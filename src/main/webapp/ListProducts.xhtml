@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+    <h:head>
+        <title>Product List and Add to Panier</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 40px; /* Increased padding */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Centering the content */
+            }
+
+            h2 {
+                color: #5b3a29; /* Brown color */
+                margin-bottom: 30px; /* Added space below the title */
+            }
+
+            .panel-group {
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                padding: 30px; /* Increased padding */
+                margin-bottom: 30px; /* Increased margin */
+                width: 80%; /* Set a fixed width for the panel */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center content inside the panel */
+            }
+
+
+            .command-button {
+                background-color: #8b5a2b; /* Brown color */
+                color: white;
+                border: none;
+                padding: 12px 20px; /* Increased padding */
+                margin-top: 20px; /* Added space above the button */
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: 100%; /* Make buttons full width */
+            }
+
+            .command-button:hover {
+                background-color: #7a4e22; /* Darker brown on hover */
+            }
+
+            .table-header {
+                font-weight: bold;
+                background-color: #d9c6b2; /* Light brown for header */
+            }
+
+            .select-label {
+                margin-top: 10px; /* Added margin for better spacing */
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <h2>Products</h2>
+
+        <div class="panel-group">
+            <!-- Display List of Products -->
+            <h:form id="productListForm">
+                <h:dataTable value="#{vitrineBean.produits}" var="product" border="1">
+                    <h:column>
+                        <f:facet name="header" class="table-header">ID</f:facet>
+                        #{product.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" class="table-header">Name</f:facet>
+                        #{product.nom}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header" class="table-header">Price</f:facet>
+                        #{product.prix}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+
+            <h2>Add Product to Panier</h2>
+
+            <!-- Form for Adding Product to Panier -->
+            <h:form id="addProductForm">
+                <h:outputLabel for="productSelect" value="Select Product:" class="select-label" />
+                <h:selectOneMenu id="productSelect" value="#{lignePanierBean.produitId}">
+                    <f:selectItems value="#{vitrineBean.produits}" var="product"
+                                   itemValue="#{product.id}" itemLabel="#{product.nom}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="quantity" value="Quantity:" class="select-label" />
+                <h:inputText id="quantity" value="#{lignePanierBean.quantite}" required="true" />
+
+                <!-- Submit Button -->
+                <h:commandButton value="Add to Panier" action="#{lignePanierBean.addProductToPanier}" class="command-button" />
+            </h:form>
+        </div>
+
+
+            <div >
+                <h:form>
+                    <h:commandButton value="Back to home" action="home.xhtml?faces-redirect=true" class="command -button" />
+                </h:form>
+            </div>
+
+
+    </h:body>
+</f:view>
+</html>

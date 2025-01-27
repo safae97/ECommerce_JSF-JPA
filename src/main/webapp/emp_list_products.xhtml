@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+   <h:head>
+      <title>Product List</title>
+      <style type="text/css">
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+         }
+
+         h2 {
+            color: #5b3a29;
+            margin-bottom: 30px;
+         }
+
+         .panel-group {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+         }
+
+         .command-button {
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: auto; /* Changed width to auto */
+         }
+
+         .command-button:hover {
+            background-color: #7a4e22;
+         }
+
+         .table-header {
+            font-weight: bold;
+            background-color: #d9c6b2;
+         }
+
+         /* Added a container to separate the buttons */
+         .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 20px; /* Add space between the table and the buttons */
+         }
+      </style>
+   </h:head>
+
+   <h:body>
+      <h2>Products</h2>
+
+      <div class="panel-group">
+         <h:form id="productForm">
+            <h:messages globalOnly="true" style="color: red;" />
+            <h:dataTable value="#{vitrineBean.produits}" var="product" border="1" style="width: 100%;">
+               <h:column>
+                  <f:facet name="header" class="table-header">ID</f:facet>
+                  #{product.id}
+               </h:column>
+               <h:column>
+                  <f:facet name="header" class="table-header">Name</f:facet>
+                  <h:inputText value="#{product.nom}" />
+               </h:column>
+               <h:column>
+                  <f:facet name="header" class="table-header">Price</f:facet>
+                  <h:inputText value="#{product.prix}" />
+               </h:column>
+               <h:column>
+                  <f:facet name="header" class="table-header">Actions</f:facet>
+                  <h:commandButton value="Update" action="#{vitrineBean.updateProductInline(product)}" styleClass="command-button" />
+                  <h:commandButton value="Delete" action="#{vitrineBean.deleteProduct(product.id)}" styleClass="command-button" />
+               </h:column>
+            </h:dataTable>
+
+            <!-- Creating a button container to keep buttons aligned properly -->
+            <div class="button-container">
+               <h:commandButton value="Create Product" action="AddProduct.xhtml?faces-redirect=true" styleClass="command-button" />
+               <h:commandButton value="Back to dashboard" action="home.xhtml?faces-redirect=true" styleClass="command-button" />
+            </div>
+         </h:form>
+      </div>
+   </h:body>
+</f:view>
+</html>

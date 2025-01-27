@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+    <h:head>
+        <title>Create Product</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 40px; /* Increased padding */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Centering the content */
+            }
+
+            h2 {
+                color: #5b3a29; /* Brown color */
+                margin-bottom: 30px; /* Added space below the title */
+            }
+
+            .panel-group {
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                padding: 30px; /* Increased padding */
+                margin-bottom: 30px; /* Increased margin */
+                width: 300px; /* Set a fixed width for the panel */
+                display: flex;
+                flex-direction: column;
+                gap: 15px; /* Added gap between form elements */
+            }
+
+            .command-button {
+                background-color: #8b5a2b;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                margin-top: 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: 100%;
+            }
+
+            .command-button:hover {
+                background-color: #7a4e22; /* Darker brown on hover */
+            }
+
+            .link {
+                margin-top: 20px; /* Increased space above the link */
+                text-align: center;
+            }
+            .form-field {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <h2>Create Product</h2>
+
+        <div class="panel-group">
+            <h:form>
+                <div class="form-field">
+                <h:outputLabel for="name" value="Product Name:" />
+                <h:inputText id="name" value="#{vitrineBean.nom}" required="true" />
+                </div>
+                <div class="form-field">
+                <h:outputLabel for="price" value="Price:" />
+                <h:inputText id="price" value="#{vitrineBean.prix}" required="true" />
+                </div>
+
+                <h:commandButton value="Create" action="#{vitrineBean.createProduct}" styleClass="command-button" />
+            </h:form>
+        </div>
+
+        <div>
+            <h:form>
+                <h:commandButton value="Back to Dashboard" action="home.xhtml?faces-redirect=true" styleClass="command-button" />
+            </h:form>
+        </div>
+    </h:body>
+</f:view>
+</html>

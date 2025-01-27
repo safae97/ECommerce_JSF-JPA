@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>List of Clients</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px; /* Increased padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centering the content */
+        }
+
+        h1 {
+            color: #5b3a29; /* Brown color */
+            margin-bottom: 30px; /* Added space below the title */
+        }
+
+        .panel-group {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px; /* Increased padding */
+            margin-bottom: 30px; /* Increased margin */
+            width: 80%; /* Set a fixed width for the panel */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centering the form */
+        }
+
+        .command-button {
+            background-color: #8b5a2b; /* Brown color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%; /* Make buttons full width */
+        }
+
+        .command-button:hover {
+            background-color: #7a4e22; /* Darker brown on hover */
+        }
+
+        .table-header {
+            font-weight: bold;
+            background-color: #d9c6b2; /* Light brown for header */
+        }
+    </style>
+</h:head>
+<h:body>
+    <h1>List of Clients</h1>
+
+    <div class="panel-group">
+        <!-- Display Faces Messages -->
+        <h:messages globalOnly="true" layout="table" style="color: red;" />
+
+        <!-- Clients Table -->
+        <h:dataTable value="#{internauteBean.clients}" var="client" border="1" style="width: 100%;">
+            <h:column>
+                <f:facet name="header" class="table-header">ID</f:facet>
+                #{client.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header" class="table-header">Username</f:facet>
+                #{client.username}
+            </h:column>
+            <h:column>
+                <f:facet name="header" class="table-header">Role</f:facet>
+                #{client.role}
+            </h:column>
+            <h:column>
+                <f:facet name="header" class="table-header">Actions</f:facet>
+                <h:form>
+                    <h:commandButton value="Delete" action="#{internauteBean.deleteClient(client.id)}" styleClass="command-button" />
+                </h:form>
+
+
+            </h:column>
+        </h:dataTable>
+        <h:form>
+            <h:commandButton value="Back to Dashboard" action="home.xhtml?faces-redirect=true" styleClass="command-button" />
+        </h:form>
+    </div>
+</h:body>
+</html>

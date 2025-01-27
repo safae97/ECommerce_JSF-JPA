@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+    <h:head>
+        <title>Home Page</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center items horizontally */
+            }
+
+            h2 {
+                color: #333;
+            }
+
+            h3 {
+                color: #555;
+            }
+
+            .panel-group {
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin-bottom: 20px;
+                width: 300px; /* Set a fixed width for the panel */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center items in the panel */
+            }
+
+            .command-button {
+                background-color: rgba(136, 78, 0, 0.76);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 5px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: 100%; /* Make buttons full width */
+            }
+
+            .command-button:hover {
+                background-color: #df9f68;
+            }
+
+            .sign-out {
+                margin-top: auto; /* Push the sign-out button to the bottom */
+                width: 100%; /* Make the sign-out button full width */
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <h2>Welcome, #{internauteBean.internaute.username}</h2>
+
+        <!-- Content for Employees -->
+        <h:panelGroup rendered="#{internauteBean.internaute.role eq 'employee'}" class="panel-group">
+            <h3>Employee Dashboard</h3>
+            <h:form>
+                <h:commandButton value="Manage Products" action="emp_list_products.xhtml?faces-redirect=true" styleClass="command-button"/>
+                <h:commandButton value="View Orders" action="EditOrdersState.xhtml?faces-redirect=true" styleClass="command-button"/>
+                <h:commandButton value="Manage Clients" action="deleteclients.xhtml?faces-redirect=true" styleClass="command-button"/>
+            </h:form>
+
+            <h:form>
+                <h:commandButton value="Sign Out" action="#{internauteBean.logout}" styleClass="sign-out command-button" />
+            </h:form>
+        </h:panelGroup>
+
+        <!-- Content for Clients -->
+        <h:panelGroup rendered="#{internauteBean.internaute.role eq 'client'}" class="panel-group">
+            <h3>Client Dashboard</h3>
+            <h:form>
+                <h:commandButton value="Products" action="ListProducts.xhtml?faces-redirect=true" styleClass="command-button"/>
+                <h:commandButton value="Panier" action="ListPanier.xhtml?faces-redirect=true" styleClass="command-button"/>
+            </h:form>
+
+            <h:form>
+                <h:commandButton value="Sign Out" action="#{internauteBean.logout}" styleClass="sign-out command-button" />
+            </h:form>
+        </h:panelGroup>
+    </h:body>
+
+</f:view>
+</html>
