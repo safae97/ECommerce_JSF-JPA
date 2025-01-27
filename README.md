@@ -60,9 +60,9 @@ The project is organized into the following layers:
 - **User Interaction (Internaute)**:
   - User registration and login.
   - View order history.
--**Command Line (Ligne de Commande)**:
-  - Selected product, its quantity, the cart it belongs to and also the status (e.g., in progress, declined).
-    
+ - **Command Line (Ligne de Commande)**:
+  -  - Selected product, its quantity, the cart it belongs to and also the status (e.g., in progress, declined).
+ 
 ---
 
 ## 📄 Report
