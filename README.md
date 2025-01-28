@@ -90,7 +90,7 @@ A detailed report documenting the project's demo, design decisions, and implemen
 ### Steps to Run the Project:
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/ECommerceJSFJPA.git
+   git clone https://github.com/safae97/ECommerce_JSF-JPA.git
 
 
 ---
